@@ -1,0 +1,92 @@
+CSS ki file mein line number par `*` selector nahi laga hua tha. Ye universal selector hota hai jo tamam HTML elements ko target karta hai. Isko aksar CSS reset ke liye use karte hain, taake browser ki default margin aur padding remove ho jaye aur element sizing consistent rahe.
+
+Lekin jab maine code mein `*` lagaya to poori styling bigar gayi, kyun ke tumne neeche margins aur padding ko browser ki default styling ko dekh kar set kiya hua tha. Ab jab reset ho gaya hai to woh spacing change ho gayi. Is liye CSS reset lagane ke baad poori styling ko dobara check karna zaroori hota hai.
+
+**1. Negative margins avoid karo.**
+
+Tumne kaafi jagahon par negative margins use kiye hain, jaise `margin-top: -160px` aur `margin-top: -400px`. Negative margins valid CSS hain, lekin inhein layout banane ke liye baar baar use nahi karna chahiye. Is se elements overlap kar sakte hain aur screen size ya content change hone par layout kharab ho sakta hai.
+
+Elements ko properly align karne ke liye Flexbox, Grid, `gap`, aur normal margins/padding use karne ki koshish karo.
+
+**2. `div` par direct global styling mat lagao.**
+
+Tumne `div` selector par direct styling apply ki hui hai. Is se page ke har `div` par wohi margin, padding aur alignment apply ho jati hai, chahe uska purpose kuch bhi ho.
+
+Koshish karo ke har relevant section ya component ko dedicated class do, jaise `.coffee-stats`, `.menu-section`, `.location-image`.
+
+Phir usi class ke through styling apply karo. Is se ek section ki styling doosre section ko affect nahi karegi.
+
+Iske ilawa kuch tags par direct styling dena theek hota hai, jaise `p`, `button` aur `a`, jab tum waqai un tamam elements ke liye common styling chahte ho. Lekin `div` ek generic container hai aur mukhtalif purposes ke liye use hota hai, is liye is par broad styling se bachna chahiye.
+
+**3. Class names lowercase mein rakho.**
+
+Tumne `.All`, `.Pastries`, `.Seasonal`, `.Location` aur `.Approach` jaisi classes banayi hain.
+
+Koshish karo ke class names lowercase mein hon aur words ke darmiyan hyphen use karo, jaise:
+
+- `.all`
+- `.pastries`
+- `.seasonal`
+- `.location`
+- `.approach-section`
+
+Ye naming convention `kebab-case` kehlata hai. Is se code consistent aur readable rehta hai.
+
+Yaad rahe, CSS class names case-sensitive hote hain, is liye class ka naam change karte waqt HTML mein bhi usko update karna zaroori hai.
+
+**4. `font-family: bold` kyun likha hai?**
+
+`font-family` mein font ka naam likhte hain, jaise `Arial`, `Roboto` ya `Georgia`. `bold` font family nahi, balki font weight hai.
+
+Agar text bold karna hai to:
+
+`font-weight: bold;`
+
+Aur agar font family set karni hai to:
+
+`font-family: Arial, sans-serif;`
+
+Is concept ko thora study karo aur `font-size`, `font-weight`, `font-family` aur `font-style` ka difference samjho.
+
+**5. `header` aur `header h1` ka difference samjho.**
+
+Tumne `header` par bhi styling di hai aur `header h1` par bhi, jab ke global `h1` ki styling bhi maujood hai.
+
+`header` poore header element ko target karta hai, jab ke `header h1` sirf header ke andar wale `h1` ko target karta hai. Ye dono selectors alag purposes ke liye hain, is liye inka use ghalat nahi hai. Lekin agar tumhara maqsad sirf header ke title ko style karna hai to dedicated class, jaise `.site-title`, zyada clear rahegi.
+
+Iske ilawa global `h1` ki styling hero section ke heading par bhi apply ho sakti hai. Is liye headings ko component-specific classes dene se unwanted styling conflicts se bacha ja sakta hai.
+
+**6. Duplicate CSS properties remove karo.**
+
+Kuch jagahon par ek hi property dobara likhi hui hai, jaise `font-size` aur `margin`.
+
+CSS mein aam tor par same selector ke andar baad mein likhi hui declaration pehle wali ko override kar deti hai, agar specificity aur `!important` jaisi conditions ka farq na ho.
+
+Is liye unnecessary duplicate properties remove karo aur sirf final required value rakho. Is se code samajhna aur debug karna asaan hoga.
+
+**7. Fixed widths aur padding se bacho.**
+
+Tumne kuch jagahon par `padding-left: 550px` aur `width: 600px` use kiya hai. Desktop par ye theek nazar aa sakta hai, lekin mobile par content screen se bahar ja sakta hai.
+
+Layout ko responsive banane ke liye `max-width`, percentages, `min()`, `max()`, `clamp()` aur media queries use karna seekho. Images ko bhi is tarah style karo ke woh chhoti screen par container se bahar na niklein.
+
+**8. CSS ko sections ke hisaab se organize karo.**
+
+Koshish karo ke header, hero, menu, location, approach, about, contact aur footer ki styling alag alag groups mein rakho.
+
+Common styles ko reusable classes mein rakho aur section-specific styles ko unke dedicated selectors mein. Is se future mein kisi ek section ko change karna ho to poori website ki styling dobara debug nahi karni padegi.
+
+**9. HTML tags ka sahi purpose samjho.**
+
+`h1` se `h6` headings ke liye hain. Inhein sirf text ka size chhota ya bara karne ke liye use nahi karna chahiye. Isi tarah har jagah `div` use karne ke bajaye jahan munasib ho `header`, `nav`, `main`, `section` aur `footer` jaise semantic HTML tags use karo.
+
+Is se code ki structure aur accessibility dono improve hoti hain.
+
+**10. Har change ke baad responsive testing karo.**
+
+CSS likhne ke baad sirf desktop par check mat karo. Browser DevTools mein mobile aur tablet widths par bhi test karo. Dekho ke text overlap to nahi kar raha, images container se bahar to nahi ja rahi, horizontal scrollbar to nahi aa raha aur navigation theek kaam kar rahi hai.
+
+Overall, tumhari CSS mein basic concepts maujood hain, lekin ab tumhein layout ko proper tareeqe se structure karna, selectors ko control karna aur responsive design seekhna hai. Sirf website ko ek screen par theek dikhana kaafi nahi; code aisa hona chahiye jo content aur screen size change hone par bhi maintainable rahe.
+
+
+chezein generic rakho, koshihs karo css classes ko reuse karo har section k liey new class na banao. same rakho or class ki properties aise banao k dosri tag me resue karsako.
